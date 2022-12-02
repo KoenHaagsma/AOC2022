@@ -55,9 +55,8 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                     }
                     var number = Number(line);
                     value += number;
-                    if (value >= largest) {
+                    if (value >= largest)
                         largest = value;
-                    }
                     calories.push(value);
                 });
                 lastThree = calories
