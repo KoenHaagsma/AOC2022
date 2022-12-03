@@ -50,22 +50,11 @@ var won = 6;
 // X = Rock
 // Y = Paper
 // Z = Scissors
-// Version B
+// Version B ------------
 // X = Lose
 // Y = Draw
 // Z = Win
-// const main_a = async () => {
-//     const file = await asyncReadFile('./src/day_2/input.txt');
-//     // const file = await asyncReadFile('./src/day_2/test_input.txt');
-//     let total = 0;
-//     for (const line of file) {
-//         const splitted = line.split(' ');
-//         if (!splitted[0] || !splitted[1]) return;
-//         const single = await score(splitted[0], splitted[1]);
-//         total += single;
-//     }
-// };
-var main_b = function () { return __awaiter(void 0, void 0, void 0, function () {
+var main_a = function () { return __awaiter(void 0, void 0, void 0, function () {
     var file, total, _i, file_1, line, splitted, single;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -78,6 +67,34 @@ var main_b = function () { return __awaiter(void 0, void 0, void 0, function () 
             case 2:
                 if (!(_i < file_1.length)) return [3 /*break*/, 5];
                 line = file_1[_i];
+                splitted = line.split(' ');
+                if (!splitted[0] || !splitted[1])
+                    return [2 /*return*/];
+                return [4 /*yield*/, score(splitted[0], splitted[1])];
+            case 3:
+                single = _a.sent();
+                total += single;
+                _a.label = 4;
+            case 4:
+                _i++;
+                return [3 /*break*/, 2];
+            case 5: return [2 /*return*/];
+        }
+    });
+}); };
+var main_b = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var file, total, _i, file_2, line, splitted, single;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, (0, read_file_1.asyncReadFile)('./src/day_2/input.txt')];
+            case 1:
+                file = _a.sent();
+                total = 0;
+                _i = 0, file_2 = file;
+                _a.label = 2;
+            case 2:
+                if (!(_i < file_2.length)) return [3 /*break*/, 5];
+                line = file_2[_i];
                 splitted = line.split(' ');
                 if (!splitted[0] || !splitted[1])
                     return [2 /*return*/];
