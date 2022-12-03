@@ -29,19 +29,21 @@ const main_b = async () => {
     let total = 0;
     for (let i = 0; i < file.length; i += 3) {
         if (file[i] === undefined || file[i + 1] === undefined || file[i + 2] === undefined) return;
+        const array = [Array.from(file[i]), Array.from(file[i + 1]), Array.from(file[i + 2])];
+        const data = array.reduce((a, b) => a.filter((c) => b.includes(c)));
 
-        const common = findCommon({
-            a: Array.from(file[i]),
-            b: Array.from(file[i + 1]),
-            c: Array.from(file[i + 2]),
-            n1: Array.from(file[i]).length,
-            n2: Array.from(file[i + 1]).length,
-            n3: Array.from(file[i + 2]).length,
-        });
+        // const common = findCommon({
+        //     a: Array.from(file[i]),
+        //     b: Array.from(file[i + 1]),
+        //     c: Array.from(file[i + 2]),
+        //     n1: Array.from(file[i]).length,
+        //     n2: Array.from(file[i + 1]).length,
+        //     n3: Array.from(file[i + 2]).length,
+        // });
 
-        /^[A-Z]*$/.test(common)
-            ? (total += upperCase.findIndex((x) => x === common) + 26 + 1)
-            : (total += lowerCase.findIndex((x) => x === common) + 1);
+        /^[A-Z]*$/.test(data[0])
+            ? (total += upperCase.findIndex((x) => x === data[0]) + 26 + 1)
+            : (total += lowerCase.findIndex((x) => x === data[0]) + 1);
 
         console.log(total);
     }
