@@ -31,8 +31,6 @@ const main_b = async () => {
         if (file[i] === undefined || file[i + 1] === undefined || file[i + 2] === undefined) return;
         const array = [Array.from(file[i]), Array.from(file[i + 1]), Array.from(file[i + 2])];
         const data = array.reduce((a, b) => a.filter((c) => b.includes(c)));
-
-        // const common = findCommon({
         //     a: Array.from(file[i]),
         //     b: Array.from(file[i + 1]),
         //     c: Array.from(file[i + 2]),
@@ -46,33 +44,6 @@ const main_b = async () => {
             : (total += lowerCase.findIndex((x) => x === data[0]) + 1);
 
         console.log(total);
-    }
-};
-
-type FindCommonProps = {
-    a: string[];
-    b: string[];
-    c: string[];
-    n1: number;
-    n2: number;
-    n3: number;
-};
-
-const findCommon = ({ a, b, c, n1, n2, n3 }: FindCommonProps) => {
-    let set1 = new Set();
-    let set2 = new Set();
-    let set3 = new Set();
-    for (let i = 0; i < n1; i++) {
-        set1.add(a[i]);
-    }
-    for (let i = 0; i < n2; i++) {
-        set2.add(b[i]);
-    }
-    for (let i = 0; i < n3; i++) {
-        if (set1.has(c[i]) === true && set2.has(c[i]) === true) {
-            if (set3.has(c[i]) === false) return c[i];
-            set3.add(c[i]);
-        }
     }
 };
 
