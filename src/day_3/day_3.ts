@@ -18,8 +18,8 @@ const main_a = async () => {
 
         const same = a.filter((element) => b.includes(element));
 
-        /^[A-Z]*$/.test(same[0])
-            ? (total += upperCase.findIndex((x) => x === same[0]) + 26 + 1)
+        same[0] === same[0].toUpperCase()
+            ? (total += upperCase.findIndex((x) => x === same[0]) + lowerCase.length + 1)
             : (total += lowerCase.findIndex((x) => x === same[0]) + 1);
     }
 };
@@ -31,16 +31,9 @@ const main_b = async () => {
         if (file[i] === undefined || file[i + 1] === undefined || file[i + 2] === undefined) return;
         const array = [Array.from(file[i]), Array.from(file[i + 1]), Array.from(file[i + 2])];
         const data = array.reduce((a, b) => a.filter((c) => b.includes(c)));
-        //     a: Array.from(file[i]),
-        //     b: Array.from(file[i + 1]),
-        //     c: Array.from(file[i + 2]),
-        //     n1: Array.from(file[i]).length,
-        //     n2: Array.from(file[i + 1]).length,
-        //     n3: Array.from(file[i + 2]).length,
-        // });
 
-        /^[A-Z]*$/.test(data[0])
-            ? (total += upperCase.findIndex((x) => x === data[0]) + 26 + 1)
+        data[0] === data[0].toUpperCase()
+            ? (total += upperCase.findIndex((x) => x === data[0]) + lowerCase.length + 1)
             : (total += lowerCase.findIndex((x) => x === data[0]) + 1);
 
         console.log(total);

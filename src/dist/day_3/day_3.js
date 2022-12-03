@@ -57,7 +57,7 @@ var main_a = function () { return __awaiter(void 0, void 0, void 0, function () 
                     var b = stringArray;
                     var same = a.filter(function (element) { return b.includes(element); });
                     /^[A-Z]*$/.test(same[0])
-                        ? (total += upperCase.findIndex(function (x) { return x === same[0]; }) + 26 + 1)
+                        ? (total += upperCase.findIndex(function (x) { return x === same[0]; }) + lowerCase.length + 1)
                         : (total += lowerCase.findIndex(function (x) { return x === same[0]; }) + 1);
                 };
                 for (_i = 0, file_1 = file; _i < file_1.length; _i++) {
@@ -83,17 +83,8 @@ var main_b = function () { return __awaiter(void 0, void 0, void 0, function () 
                         return { value: void 0 };
                     var array = [Array.from(file[i]), Array.from(file[i + 1]), Array.from(file[i + 2])];
                     var data = array.reduce(function (a, b) { return a.filter(function (c) { return b.includes(c); }); });
-                    console.log(data);
-                    // const common = findCommon({
-                    //     a: Array.from(file[i]),
-                    //     b: Array.from(file[i + 1]),
-                    //     c: Array.from(file[i + 2]),
-                    //     n1: Array.from(file[i]).length,
-                    //     n2: Array.from(file[i + 1]).length,
-                    //     n3: Array.from(file[i + 2]).length,
-                    // });
-                    /^[A-Z]*$/.test(data[0])
-                        ? (total += upperCase.findIndex(function (x) { return x === data[0]; }) + 26 + 1)
+                    data[0] === data[0].toUpperCase()
+                        ? (total += upperCase.findIndex(function (x) { return x === data[0]; }) + lowerCase.length + 1)
                         : (total += lowerCase.findIndex(function (x) { return x === data[0]; }) + 1);
                     console.log(total);
                 };
@@ -107,22 +98,3 @@ var main_b = function () { return __awaiter(void 0, void 0, void 0, function () 
     });
 }); };
 exports.main = main_b;
-var findCommon = function (_a) {
-    var a = _a.a, b = _a.b, c = _a.c, n1 = _a.n1, n2 = _a.n2, n3 = _a.n3;
-    var set1 = new Set();
-    var set2 = new Set();
-    var set3 = new Set();
-    for (var i = 0; i < n1; i++) {
-        set1.add(a[i]);
-    }
-    for (var i = 0; i < n2; i++) {
-        set2.add(b[i]);
-    }
-    for (var i = 0; i < n3; i++) {
-        if (set1.has(c[i]) === true && set2.has(c[i]) === true) {
-            if (set3.has(c[i]) === false)
-                return c[i];
-            set3.add(c[i]);
-        }
-    }
-};
