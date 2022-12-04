@@ -18,9 +18,8 @@ const main_a = async () => {
         if (
             (numbersA[0] >= numbersB[0] && numbersA[1] <= numbersB[1]) ||
             (numbersB[0] >= numbersA[0] && numbersB[1] <= numbersA[1])
-        ) {
+        )
             total++;
-        }
 
         console.log(total);
     });
