@@ -37,62 +37,54 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.main = void 0;
-var lowerCase = 'abcdefghijklmnopqrstuvwxyz'.split('');
-var upperCase = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
 var read_file_1 = require("../modules/read_file");
 var main_a = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var file, total, _loop_1, _i, file_1, line, state_1;
+    var file, total;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, read_file_1.asyncReadFile)('./src/day_3/input.txt')];
+            case 0: return [4 /*yield*/, (0, read_file_1.asyncReadFile)('./src/day_4/input.txt')];
             case 1:
                 file = _a.sent();
                 total = 0;
-                _loop_1 = function (line) {
-                    var lineLength = line.length;
-                    if (lineLength === 0)
-                        return { value: void 0 };
-                    var stringArray = Array.from(line);
-                    var a = stringArray.splice(lineLength / 2);
-                    var b = stringArray;
-                    var same = a.filter(function (element) { return b.includes(element); });
-                    same[0] === same[0].toUpperCase()
-                        ? (total += upperCase.findIndex(function (x) { return x === same[0]; }) + lowerCase.length + 1)
-                        : (total += lowerCase.findIndex(function (x) { return x === same[0]; }) + 1);
-                };
-                for (_i = 0, file_1 = file; _i < file_1.length; _i++) {
-                    line = file_1[_i];
-                    state_1 = _loop_1(line);
-                    if (typeof state_1 === "object")
-                        return [2 /*return*/, state_1.value];
-                }
+                file.forEach(function (segment) {
+                    var section = segment.split(',');
+                    if (section === undefined || section[section.length - 1] === '')
+                        return;
+                    var insideSectionA = section[0].split('-');
+                    var insideSectionB = section[1].split('-');
+                    var numbersA = insideSectionA.map(function (number) { return parseInt(number); });
+                    var numbersB = insideSectionB.map(function (number) { return parseInt(number); });
+                    if ((numbersA[0] >= numbersB[0] && numbersA[1] <= numbersB[1]) ||
+                        (numbersB[0] >= numbersA[0] && numbersB[1] <= numbersA[1])) {
+                        total++;
+                    }
+                    console.log(total);
+                });
                 return [2 /*return*/];
         }
     });
 }); };
 var main_b = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var file, total, _loop_2, i, state_2;
+    var file, total;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, read_file_1.asyncReadFile)('./src/day_3/input.txt')];
+            case 0: return [4 /*yield*/, (0, read_file_1.asyncReadFile)('./src/day_4/input.txt')];
             case 1:
                 file = _a.sent();
                 total = 0;
-                _loop_2 = function (i) {
-                    if (file[i] === undefined || file[i + 1] === undefined || file[i + 2] === undefined)
-                        return { value: void 0 };
-                    var array = [Array.from(file[i]), Array.from(file[i + 1]), Array.from(file[i + 2])];
-                    var data = array.reduce(function (a, b) { return a.filter(function (c) { return b.includes(c); }); });
-                    data[0] === data[0].toUpperCase()
-                        ? (total += upperCase.findIndex(function (x) { return x === data[0]; }) + lowerCase.length + 1)
-                        : (total += lowerCase.findIndex(function (x) { return x === data[0]; }) + 1);
+                file.forEach(function (segment) {
+                    var section = segment.split(',');
+                    if (section === undefined || section[section.length - 1] === '')
+                        return;
+                    var insideSectionA = section[0].split('-');
+                    var insideSectionB = section[1].split('-');
+                    var numbersA = insideSectionA.map(function (number) { return parseInt(number); });
+                    var numbersB = insideSectionB.map(function (number) { return parseInt(number); });
+                    // console.log(numbersA, numbersB);
+                    if (!(numbersA[0] > numbersB[1] || numbersA[1] < numbersB[0]))
+                        total++;
                     console.log(total);
-                };
-                for (i = 0; i < file.length; i += 3) {
-                    state_2 = _loop_2(i);
-                    if (typeof state_2 === "object")
-                        return [2 /*return*/, state_2.value];
-                }
+                });
                 return [2 /*return*/];
         }
     });
