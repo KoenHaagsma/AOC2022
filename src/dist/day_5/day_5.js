@@ -35,57 +35,56 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 exports.__esModule = true;
 exports.main = void 0;
 var read_file_1 = require("../modules/read_file");
-var main_a = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var file, total;
+var stack_1 = ['F', 'C', 'P', 'G', 'Q', 'R'];
+var stack_2 = ['W', 'T', 'C', 'P'];
+var stack_3 = ['B', 'H', 'P', 'M', 'C'];
+var stack_4 = ['L', 'T', 'Q', 'S', 'M', 'P', 'R'];
+var stack_5 = ['P', 'H', 'J', 'Z', 'V', 'G', 'N'];
+var stack_6 = ['D', 'P', 'J'];
+var stack_7 = ['L', 'G', 'P', 'Z', 'F', 'J', 'T', 'R'];
+var stack_8 = ['N', 'L', 'H', 'C', 'F', 'P', 'T', 'J'];
+var stack_9 = ['G', 'V', 'Z', 'Q', 'H', 'T', 'C', 'W'];
+var main = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var file, fullStack;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, read_file_1.asyncReadFile)('./src/day_4/input.txt')];
+            case 0: return [4 /*yield*/, (0, read_file_1.asyncReadFile)('./src/day_5/input.txt')];
             case 1:
                 file = _a.sent();
-                total = 0;
-                file.forEach(function (segment) {
-                    var section = segment.split(',');
-                    if (section === undefined || section[section.length - 1] === '')
+                fullStack = [stack_1, stack_2, stack_3, stack_4, stack_5, stack_6, stack_7, stack_8, stack_9];
+                file.forEach(function (sentence) {
+                    // Remove text from the sentence and replace with numbers array
+                    var numbersOnly = sentence.replace(/[^0-9]/g, '');
+                    var numbers = numbersOnly.split('').map(function (number) {
+                        return parseInt(number);
+                    });
+                    if (numbers === undefined || numbers.length === 0)
                         return;
-                    var insideSectionA = section[0].split('-');
-                    var insideSectionB = section[1].split('-');
-                    var numbersA = insideSectionA.map(function (number) { return parseInt(number); });
-                    var numbersB = insideSectionB.map(function (number) { return parseInt(number); });
-                    if ((numbersA[0] >= numbersB[0] && numbersA[1] <= numbersB[1]) ||
-                        (numbersB[0] >= numbersA[0] && numbersB[1] <= numbersA[1]))
-                        total++;
-                    console.log(total);
+                    if (numbers.length === 4) {
+                        var fixed = parseInt(String(numbers[0] + String(numbers[1])));
+                        numbers = [fixed, numbers[2], numbers[3]];
+                    }
+                    var move = numbers[0];
+                    var from = numbers[1] - 1;
+                    var to = numbers[2] - 1;
+                    var movedLetters = fullStack[from].splice(fullStack[from].length - move, move);
+                    fullStack[to] = __spreadArray(__spreadArray([], fullStack[to], true), movedLetters, true);
+                    console.table(fullStack);
                 });
                 return [2 /*return*/];
         }
     });
 }); };
-var main_b = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var file, total;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, read_file_1.asyncReadFile)('./src/day_4/input.txt')];
-            case 1:
-                file = _a.sent();
-                total = 0;
-                file.forEach(function (segment) {
-                    var section = segment.split(',');
-                    if (section === undefined || section[section.length - 1] === '')
-                        return;
-                    var insideSectionA = section[0].split('-');
-                    var insideSectionB = section[1].split('-');
-                    var numbersA = insideSectionA.map(function (number) { return parseInt(number); });
-                    var numbersB = insideSectionB.map(function (number) { return parseInt(number); });
-                    // console.log(numbersA, numbersB);
-                    if (!(numbersA[0] > numbersB[1] || numbersA[1] < numbersB[0]))
-                        total++;
-                    console.log(total);
-                });
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.main = main_b;
+exports.main = main;
