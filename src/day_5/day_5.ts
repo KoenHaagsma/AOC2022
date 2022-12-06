@@ -42,6 +42,8 @@ const main_a = async () => {
 const main_b = async () => {
     const file = await asyncReadFile('./src/day_5/input.txt');
     // const file = await asyncReadFile('./src/day_5/test_input.txt');
+
+    console.log(file)
     const fullStack = [stack_1, stack_2, stack_3, stack_4, stack_5, stack_6, stack_7, stack_8, stack_9];
 
     file.forEach((sentence) => {
@@ -64,7 +66,7 @@ const main_b = async () => {
         const movedLetters = fullStack[from].splice(fullStack[from].length - move, move).reverse();
         fullStack[to] = [...fullStack[to], ...movedLetters];
 
-        console.table(fullStack);
+        // console.table(fullStack);
     });
 };
 
